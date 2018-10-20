@@ -1,0 +1,57 @@
+﻿<Window x:Class="ChatClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatClient"
+        xmlns:p="clr-namespace:ChatClient.Properties"
+        xmlns:viewmodels="clr-namespace:ChatClient.ViewModels"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.ChatClient}" MinHeight="450" MinWidth="800"
+        WindowState="Maximized"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <viewmodels:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Frame x:Name="MainWindowFrame" 
+               Grid.Row="0" 
+               Grid.Column="1" 
+               Grid.ColumnSpan="2" 
+               Grid.RowSpan="3" 
+               BorderThickness="1, 0, 0 , 0" 
+               BorderBrush="LightGray"
+               Content="{Binding CurrentPage}"/>
+        <StackPanel Grid.Column="0" 
+                    Grid.Row="0" 
+                    Grid.RowSpan="3">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="MaxHeight" Value="30"/>
+                </Style>
+            </StackPanel.Resources>
+            <Button Margin="10"
+                    Command="{Binding SettingsCommand}"
+                    Content="{x:Static p:Resources.Settings}"/>
+            <Button Margin="10"
+                    Command="{Binding AboutCommand}"
+                    Content="{x:Static p:Resources.About}"/>
+            <Button Margin="10" Background="White">
+                <Image Source="../Images/volumepic.jpg"/>
+            </Button>
+
+        </StackPanel>
+    </Grid>
+</Window>
